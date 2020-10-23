@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  pyserver:
+    image: myassignment 
+    command: python3 server.py
+    ports:
+      - 8080:8080
+  nginxserver:
+    image: nginxcustom 
+    ports:
+      - 8085:80
+    depends_on:
+      - pyserver
+  client:
+    image: myassignment 
+    command: python3 clientnew.py
+    depends_on:
+      - nginxserver
