@@ -1,0 +1,20 @@
+name: Static Code Analysis
+
+on: [pull-request]
+
+jobs:
+    run-sca:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Install lint
+              run: |
+                pip3 install pylint
+                pip3 install pylint --upgrade
+                pip3 install tox pytest
+            - name: Copy the Repo
+              uses: actions/checkout@v1
+            - name: Checking source code
+              run: |
+                pylint server.py
+                pylint clientnew.py                
+                
