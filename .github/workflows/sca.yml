@@ -8,9 +8,9 @@ jobs:
         steps:
             - name: Install lint
               run: |
-                pip3 install pylint
-                pip3 install pylint --upgrade
-                pip3 install tox pytest
+                pip install pylint
+                pip install pylint --upgrade
+                pip install tox pytest
             - name: Copy the Repo
               uses: actions/checkout@v1
             - name: Checking source code
