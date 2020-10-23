@@ -1,6 +1,6 @@
 name: Static Code Analysis
 
-on: [pull_request]
+on: [push]
 
 jobs:
     run-sca:
