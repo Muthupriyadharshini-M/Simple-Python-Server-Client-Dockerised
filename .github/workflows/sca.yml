@@ -6,15 +6,13 @@ jobs:
     run-sca:
         runs-on: ubuntu-latest
         steps:
-            - name: Install lint
-              run: |
-                pip install pylint
-                pip install pylint --upgrade
-                pip install tox pytest
             - name: Copy the Repo
               uses: actions/checkout@v1
             - name: Checking source code
               run: |
+                pip install pylint
+                pip install pylint --upgrade
+                pip install tox pytest
                 pylint server.py
                 pylint clientnew.py                
                 
