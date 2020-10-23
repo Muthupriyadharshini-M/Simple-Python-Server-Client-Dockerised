@@ -1,3 +1,5 @@
+#This image has been named myassignment after building as given in docker-compose.yml
+
 FROM ubuntu as stage1
 RUN apt-get -y update
 RUN apt-get -y upgrade
