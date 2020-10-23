@@ -1,0 +1,20 @@
+name: Static Code Analysis
+
+on: [push, pull_request]
+
+jobs:
+    run-sca:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Copy the Repo
+              uses: actions/checkout@v1
+            - name: Checking source code
+              run: |
+                python3 --version
+                pip --version
+                pip install pylint
+                pip install pylint --upgrade
+                pip install tox pytest 
+                export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
+                pylint server.py
+                pylint clientnew.py
