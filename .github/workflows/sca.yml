@@ -10,9 +10,9 @@ jobs:
               uses: actions/checkout@v1
             - name: Checking source code
               run: |
-                pip install pylint
-                pip install pylint --upgrade
+                pip install pylin
                 pip install tox pytest
                 pylint server.py
-                pylint clientnew.py                
+                pylint clientnew.py 
+                whereis pylint               
                 
