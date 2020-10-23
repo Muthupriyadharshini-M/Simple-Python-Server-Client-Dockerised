@@ -1,6 +1,6 @@
 name: Static Code Analysis
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
     run-sca:
@@ -12,5 +12,11 @@ jobs:
               run: |
                 python3 --version
                 pip3 --version
+                pip3 install pylint
+                pip3 install pylint --upgrade
+                pip3 install tox pytest 
+                export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
+                pylint server.py
+                pylint clientnew.py
                                
                 
