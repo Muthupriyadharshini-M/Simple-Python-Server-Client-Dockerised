@@ -14,7 +14,7 @@ class MyHTTPHandler(http.server.SimpleHTTPRequestHandler,http.client.HTTPRespons
 
     def do_GET(self):
         self.send_response(200)
-        self.send_header('ContentType', 'application/json'
+        self.send_header('ContentType', 'application/json')
         self.end_headers()
         print(str(self.command))
         emp_id = self.path[5:] #Getting the ID of the Employee
