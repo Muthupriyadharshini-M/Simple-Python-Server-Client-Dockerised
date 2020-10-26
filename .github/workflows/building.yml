@@ -16,3 +16,4 @@ jobs:
             - name: Compose the Dockerfile
               run: |
                 sudo docker-compose up
+                sudo docker stop $(docker ps -aq)
