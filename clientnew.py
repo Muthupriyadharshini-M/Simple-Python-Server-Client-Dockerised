@@ -8,7 +8,7 @@ url = "http://" + "nginxserver" + ":80"
 
 #id = int(input("Enter the ID of the employee whose data you want to see"))
 params = {"id":5}
-get_data = requests.get(url=url,params=params)
+get_data = requests.get(url=url,params=params
 print((get_data.headers))
 print(get_data.text)
 
