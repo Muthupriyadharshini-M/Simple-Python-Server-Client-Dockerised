@@ -1,6 +1,6 @@
 name: Static Code Analysis
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
     run-sca:
@@ -8,14 +8,15 @@ jobs:
         steps:
             - name: Copy the Repo
               uses: actions/checkout@v1
-            - name: Checking source code
+            - name: Install dependencies|
               run: |
-                python3 --version
-                pip --version
-                pip install pylint
-                pip install pylint --upgrade
-                pip install tox pytest 
-                export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
-                pylint server.py
-                pylint clientnew.py
+                python -m pip install --upgrade pip
+                pip install flake8 pytest
+            - name: Lint with flake8
+              run: |
+                flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+            - name: Test with pytest
+              run: |
+                pytest
+
 
