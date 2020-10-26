@@ -7,12 +7,12 @@ jobs:
     run-build:
         runs-on: ubuntu-latest
         steps:
-            - name: Copy the Repo
+            - name: Copy the Repo 
               uses: actions/checkout@v1
-            - name: Create Images
+            - name: Create the images
               run: |
                 sudo docker build -t myassignment . 
                 sudo docker build -t nginx_custom . -f Dockerfile_nginx 
-            - name: Lint with flake8
+            - name: Compose the Dockerfile
               run: |
                 sudo docker-compose up
