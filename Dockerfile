@@ -12,6 +12,10 @@ RUN pip3 install requests
 FROM ubuntu as stage2
 RUN apt-get update && apt-get install -y ffmpeg
 RUN apt-get -y install sudo
+COPY data.json ./data.json
+COPY server.py ./server.py
+COPY clientnew.py ./clientnew.py
+
 COPY --from=stage1 /usr/bin/python3.8-config /usr/bin/python3.8-config 
 COPY --from=stage1 /usr/bin/python3.8 /usr/bin/python3.8
 COPY --from=stage1 /usr/bin/python3 /usr/bin/python3
@@ -25,10 +29,5 @@ COPY --from=stage1 /usr/include/python3.8 /usr/include/python3.8
 COPY --from=stage1 /usr/share/python3 /usr/share/python3
 COPY --from=stage1 /usr/bin/pip3 /usr/bin/pip3
 COPY --from=stage1 /usr/lib/python3/dist-packages /usr/lib/python3/dist-packages
-
-COPY data.json ./data.json
-COPY server.py ./server.py
-COPY clientnew.py ./clientnew.py
-
 
 CMD ["sleep"]
