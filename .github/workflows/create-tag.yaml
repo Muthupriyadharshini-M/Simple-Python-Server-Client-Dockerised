@@ -35,6 +35,8 @@ jobs:
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@5a4ac90
       - name: npm install
         run: |
           cat  ./README.md | grep ABCD | awk '{ print $2 }'
