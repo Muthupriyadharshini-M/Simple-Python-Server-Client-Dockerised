@@ -27,8 +27,11 @@ jobs:
             }
             core.setOutput('tag',tag);
             console.log(tag);
+      - name: echo
+        run: |
+          echo $ {{ github.needs.jobs.tag-id.outputs.tag }}
   build:
-    if: github.jobs.tag-id.outputs.tag == helmfreeze
+    if: github.needs.jobs.tag-id.outputs.tag == "helmfreeze"
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
