@@ -31,7 +31,7 @@ jobs:
         run: |
           echo $ {{ github.needs.jobs.tag-id.outputs.tag }}
   build:
-    if: needs.jobs.tag-id.outputs.tag == "helmfreeze"
+    if: needs.jobs.tag-id.outputs.tag == 'helmfreeze'
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
