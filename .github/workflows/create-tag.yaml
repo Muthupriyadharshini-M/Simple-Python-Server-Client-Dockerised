@@ -28,13 +28,12 @@ jobs:
             core.setOutput('tag',tag);
             console.log(tag);
   build:
-    if: github.jobs.tag-id.outputs.tag == 'helmfreeze'
+    if: github.jobs.tag-id.outputs.tag == helmfreeze
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
       - name: npm install
         run: |
-          npm install @octokit/rest 
           cat  ./README.md | grep ABCD | awk '{ print \$2 }
       # - name: Create tag
       #   uses: actions/github-script@v3
