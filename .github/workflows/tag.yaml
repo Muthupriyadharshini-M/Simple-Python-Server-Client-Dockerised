@@ -1,0 +1,37 @@
+name: "My tag workflow"
+
+on: 
+  pull_request:
+    branches:
+      - master
+    types: ["closed"]
+    paths:
+      - README.md
+    
+jobs:
+  tag-id:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tagId.outputs.tag }}
+    steps:
+      - name: Deploy Script
+        uses: actions/github-script@c7971c2
+        id: tagId
+        with:
+          script: |
+            let head =  context.payload.pull_request.title.split('-');
+            var tag;
+            if( head != null )
+            {
+              tag = head[0]
+            }
+            core.setOutput('tag',tag);
+  build:
+    needs: tag-id
+    runs-on: ubuntu-latest
+    steps:
+    - name: Tag commit
+      uses: tvdias/github-tagger@v0.0.1
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        tag: ${{ tag-id.outputs.tag }}
