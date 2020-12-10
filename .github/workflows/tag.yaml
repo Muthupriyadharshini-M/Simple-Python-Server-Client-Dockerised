@@ -30,6 +30,9 @@ jobs:
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
+      - name: npm install
+        run: |
+          npm install @octokit/rest
       - name: Create tag
         uses: actions/github-script@v3
         with:
