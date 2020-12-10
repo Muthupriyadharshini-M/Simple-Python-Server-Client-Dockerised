@@ -30,8 +30,16 @@ jobs:
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
-    - name: Tag commit
-      uses: tvdias/github-tagger@v0.0.1
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        tag: ${{ needs.tag-id.outputs.tag }}
+      - name: Create tag
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            octokit.git.createTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: needs.tag-id.outputs.tag,
+              message: "Created by my-tag-workflow",
+              object: context.sha,
+              type: commit
+            })
