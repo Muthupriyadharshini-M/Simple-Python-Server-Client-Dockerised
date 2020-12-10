@@ -27,26 +27,28 @@ jobs:
             }
             core.setOutput('tag',tag);
   build:
+    if: needs.tag-id.outputs.tag = "helmfreeze"
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
       - name: npm install
         run: |
-          npm install @octokit/rest -g
-      - name: Create tag
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{ github.token }}
-          script: |
-            const { Octokit } = require("@octokit/rest");
-            const octokit = new Octokit({
-              auth: "4cebe563bfc51cd4e3db369dd7ae73499939cf93"
-            });
-            octokit.git.createTag({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag: needs.tag-id.outputs.tag,
-              message: "Created by my-tag-workflow",
-              object: context.sha,
-              type: commit
-            })
+          npm install @octokit/rest 
+          cat  ./README.md | grep ABCD | awk '{ print \$2 }
+      # - name: Create tag
+      #   uses: actions/github-script@v3
+      #   with:
+      #     github-token: ${{ github.token }}
+      #     script: |
+      #       const { Octokit } = require("@octokit/rest");
+      #       const octokit = new Octokit({
+      #         auth: "4cebe563bfc51cd4e3db369dd7ae73499939cf93"
+      #       });
+      #       octokit.git.createTag({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         tag: needs.tag-id.outputs.tag,
+      #         message: "Created by my-tag-workflow",
+      #         object: context.sha,
+      #         type: commit
+      #       })
