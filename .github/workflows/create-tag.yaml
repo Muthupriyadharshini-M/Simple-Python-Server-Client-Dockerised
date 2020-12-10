@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: npm install
         run: |
-          npm install @octokit/rest
+          npm install @octokit/rest -g
       - name: Create tag
         uses: actions/github-script@v3
         with:
