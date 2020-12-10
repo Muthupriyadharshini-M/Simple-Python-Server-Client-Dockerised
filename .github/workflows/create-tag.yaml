@@ -29,9 +29,9 @@ jobs:
             console.log(tag);
       - name: echo
         run: |
-          echo $ {{ github.needs.jobs.tag-id.outputs.tag }}
+          echo $ {{ needs.tag-id.outputs.tag }}
   build:
-    if: needs.jobs.tag-id.outputs.tag == 'helmfreeze'
+    if: needs.tag-id.outputs.tag == 'hello'
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
