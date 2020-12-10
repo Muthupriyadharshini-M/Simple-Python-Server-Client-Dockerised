@@ -27,7 +27,7 @@ jobs:
             }
             core.setOutput('tag',tag);
   build:
-    if: needs.tag-id.outputs.tag == "helmfreeze"
+    if: needs.tag-id.outputs.tag == helmfreeze
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
