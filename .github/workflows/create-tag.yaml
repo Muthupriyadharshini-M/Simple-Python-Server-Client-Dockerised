@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: npm install
         run: |
-          cat  ./README.md | grep ABCD | awk '{ print \$2 }
+          cat  ./README.md | grep ABCD | awk '{ print \$2 }'
       # - name: Create tag
       #   uses: actions/github-script@v3
       #   with:
