@@ -34,4 +34,4 @@ jobs:
       uses: tvdias/github-tagger@v0.0.1
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        tag: ${{ tag-id.outputs.tag }}
+        tag: ${{ needs.tag-id.outputs.tag }}
