@@ -35,6 +35,10 @@ jobs:
         with:
           github-token: ${{ github.token }}
           script: |
+            const { Octokit } = require("@octokit/rest");
+            const octokit = new Octokit({
+              auth: "4cebe563bfc51cd4e3db369dd7ae73499939cf93"
+            });
             octokit.git.createTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
