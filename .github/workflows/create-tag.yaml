@@ -26,6 +26,7 @@ jobs:
               tag = head[0]
             }
             core.setOutput('tag',tag);
+            console.log(tag);
   build:
     if: github.jobs.tag-id.outputs.tag == 'helmfreeze'
     needs: tag-id
