@@ -39,7 +39,19 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: npm install
         run: |
-          cat  ./README.md | grep ABCD | awk '{ print $2 }'
+          cat  ./README.md | grep ABCD | awk '{ print \$2 }'
+      - name: Get the version
+        id: version
+        run: |
+          chart_version=100.0.0.3
+          echo "VERSION=$chart_version" >> $GITHUB_ENV
+      - name: Tag this version in the repo
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag -a "Helm_v${{ env.VERSION }}" HEAD -m "Helm_v${{ env.VERSION }} is created"
+          git push --tags
+
       # - name: Create tag
       #   uses: actions/github-script@v3
       #   with:
