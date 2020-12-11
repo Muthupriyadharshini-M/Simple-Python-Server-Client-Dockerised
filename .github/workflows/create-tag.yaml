@@ -21,17 +21,20 @@ jobs:
           script: |
             let head =  context.payload.pull_request.title.split('-');
             var tag;
+            var teg;
             if( head != null )
             {
-              tag = head[0]
+              tag = head[0];
+              teg = head[1]; 
             }
             core.setOutput('tag',tag);
+            core.setOutput('teg',teg);
             console.log(tag);
       - name: echo
         run: |
           echo $ {{ needs.tag-id.outputs.tag }}
   build:
-    if: needs.tag-id.outputs.tag == 'hello'
+    if: needs.tag-id.outputs.tag == 'hello' && needs.tag-id.outputs.teg == 'world'
     needs: tag-id
     runs-on: ubuntu-latest
     steps:
