@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.tagId.outputs.tag }}
-      teg: ${{ steps.tagId.outputs.teg }}:  
+      teg: ${{ steps.tagId.outputs.teg }}  
     steps:
       - name: Deploy Script
         uses: actions/github-script@c7971c2
