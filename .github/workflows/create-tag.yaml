@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: npm install
         run: |
-          cat  ./README.md | grep ABCD | awk '{ print \$2 }'
+          cat  ./README.md | grep ABCD | awk '{ print $2 }'
       - name: Get the version
         id: version
         run: |
