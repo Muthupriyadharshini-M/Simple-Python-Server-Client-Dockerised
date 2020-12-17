@@ -7,6 +7,7 @@ on:
     types: ["opened"]
     paths:
       - README.md
+      - .github/workflows/create-tag.yaml
     
 jobs:
   tag-id:
@@ -33,7 +34,7 @@ jobs:
             console.log(tag);
       - name: echo
         run: |
-          echo $ {{ needs.tag-id.outputs.tag }}
+          echo ${{ needs.tag-id.outputs.tag }}
   build:
     if: needs.tag-id.outputs.tag == 'hello' && needs.tag-id.outputs.teg == 'world'
     needs: tag-id
@@ -43,6 +44,8 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: npm install
         run: |
+          word=${{ needs.tag-id.outputs.tag }}
+          echo $word
           cat  ./README.md | grep ABCD | awk '{ print $2 }'
       - name: Get the version
         id: version
