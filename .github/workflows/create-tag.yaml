@@ -4,9 +4,8 @@ on:
   pull_request:
     branches:
       - master
-    types: ["opened"]
-    paths:
-      - README.md
+    types: ["closed"]
+    
     
 jobs:
   tag-id:
