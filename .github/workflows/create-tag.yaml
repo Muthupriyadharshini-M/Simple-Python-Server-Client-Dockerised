@@ -29,13 +29,21 @@ jobs:
             {
               tag = head[0];
               teg = head[1]; 
+              version = head[2];
             }
             core.setOutput('tag',tag);
             core.setOutput('teg',teg);
+            core.setOutput('version',version);
             console.log(tag);
       - name: echo
         run: |
-          echo $ {{ needs.tag-id.outputs.tag }}
+          echo ${{ needs.tag-id.outputs.tag }}
+      - name: Something
+        run: |
+          version=`echo ${{ steps.tagId.outputs.version }}`
+          if [ $version == "100"]; then
+            echo "Winner"
+          fi
   build:
     if: needs.tag-id.outputs.tag == 'hello' && needs.tag-id.outputs.teg == 'world'
     needs: tag-id
