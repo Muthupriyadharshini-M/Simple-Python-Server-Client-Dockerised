@@ -42,7 +42,7 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: npm install
         run: |
-          word= ${{ needs.tag-id.outputs.tag }}
+          word=${{ needs.tag-id.outputs.tag }}
           echo $word
           if [ "${{ needs.tag-id.outputs.tag}}" == "hello" ]
           cat  ./README.md | grep ABCD | awk '{ print $2 }'
