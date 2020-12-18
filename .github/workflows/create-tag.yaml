@@ -44,6 +44,7 @@ jobs:
         run: |
           word= ${{ needs.tag-id.outputs.tag }}
           echo $word
+          if [ "${{ needs.tag-id.outputs.tag}}" == "hello" ]
           cat  ./README.md | grep ABCD | awk '{ print $2 }'
       - name: Get the version
         id: version
