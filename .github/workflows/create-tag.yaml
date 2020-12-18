@@ -47,7 +47,7 @@ jobs:
         run: |
           word=${{ needs.tag-id.outputs.tag }}
           echo $word
-          if [ "${{ needs.tag-id.outputs.tag}}" == "hello" ];
+          if [ ${{ needs.tag-id.outputs.tag}} == "hello" ];
           then
            echo "Hello"
           fi
