@@ -13,9 +13,10 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: Generate Difference
         run: |
-          diff -u  ./README.md ./data.json > diff.txt || true
+          diff -y  ./README.md ./data.json > diff.txt || true
+          file=`cat diff.txt`
           cat diff.txt
-          echo "::set-output name=diff::`cat diff.txt`"
+          echo "::set-output name=diff::$file"
         id: gen-diff
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@master
