@@ -11,10 +11,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@5a4ac90
-      - name: Output diff
+      - name: Generate Difference
         run: |
-          diff -y -q ./server.py ./clientnew.py || true
+          diff -y -q ./server.py ./clientnew.py > diff.txt || true
+          echo "::set-output name=diff::`cat diff.txt`"
+        id: gen-diff
       - name: Output the differences
         run: |
-          diff -y ./server.py ./clientnew.py || true
+          echo ${{ steps.gen-diff.outputs.diff }}
       
