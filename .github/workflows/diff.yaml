@@ -14,6 +14,7 @@ jobs:
       - name: Generate Difference
         run: |
           diff -y  ./server.py ./clientnew.py > diff.txt || true
+          cat diff.txt
           echo "::set-output name=diff::`cat diff.txt`"
         id: gen-diff
       - name: Comment PR
