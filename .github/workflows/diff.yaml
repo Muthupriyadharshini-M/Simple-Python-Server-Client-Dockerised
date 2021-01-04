@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: Output diff
         run: |
-          diff -y -q./server.py ./clientnew.py
+          diff -y -q ./server.py ./clientnew.py
       - name: Output the differences
         run: |
           diff -y ./server.py ./clientnew.py  
