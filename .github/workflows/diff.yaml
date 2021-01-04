@@ -1,9 +1,9 @@
 name: Checking Git diff
 
 on:
-  push:
+  pull_request:
     branches:
-      - git-diff
+      - master
 
 jobs:
   output-diff:
@@ -15,7 +15,9 @@ jobs:
         run: |
           echo "::set-output name=diff::`diff -y  ./server.py ./clientnew.py || true`"
         id: gen-diff
-      - name: Output the differences
-        run: |
-          echo ${{ steps.gen-diff.outputs.diff }}
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@master
+        with:
+          message: ${{ steps.gen-diff.outputs.diff }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
