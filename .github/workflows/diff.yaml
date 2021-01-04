@@ -1,0 +1,19 @@
+name: Checking Git diff
+
+on:
+  push:
+    branches:
+      - git-diff
+
+jobs:
+  output-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@5a4ac90
+      - name: Output the differences
+        run: |
+          diff -y -a ./server.py ./client.py  
+      - name: Output diff
+        run: |
+          diff -y ./server.py ./client.py
