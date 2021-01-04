@@ -13,7 +13,8 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: Generate Difference
         run: |
-          echo "::set-output name=diff::`diff -y  ./server.py ./clientnew.py || true`"
+          diff -y  ./server.py ./clientnew.py > diff.txt || true
+          echo "::set-output name=diff::`cat diff.txt`"
         id: gen-diff
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@master
