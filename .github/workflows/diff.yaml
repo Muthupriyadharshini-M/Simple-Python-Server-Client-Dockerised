@@ -13,8 +13,7 @@ jobs:
         uses: actions/checkout@5a4ac90
       - name: Generate Difference
         run: |
-          diff -y  ./server.py ./clientnew.py > diff.txt || true
-          echo "::set-output name=diff::`cat diff.txt`"
+          echo "::set-output name=diff::`diff -y  ./server.py ./clientnew.py || true`"
         id: gen-diff
       - name: Output the differences
         run: |
