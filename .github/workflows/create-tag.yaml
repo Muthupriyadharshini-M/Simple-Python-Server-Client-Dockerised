@@ -27,6 +27,6 @@ jobs:
         id: tagId
         with:
           script: |
-            const github = @actions/github
-            console.log ( github.context )
+        
+            console.log ( github )
       
