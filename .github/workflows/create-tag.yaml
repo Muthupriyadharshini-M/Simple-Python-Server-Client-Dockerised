@@ -11,81 +11,21 @@ on:
     
     
 jobs:
-  tag-id:
+  print:
     runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.tagId.outputs.tag }}
-      teg: ${{ steps.tagId.outputs.teg }}  
+    steps:
+      - name: Echo
+        run: |
+          echo " Hello "
+          
+  script:
+    needs: print
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy Script
         uses: actions/github-script@c7971c2
         id: tagId
         with:
           script: |
-            let head =  context.payload.pull_request.title.split('-');
-            var tag;
-            var teg;
-            if( head != null )
-            {
-              tag = head[0];
-              teg = head[1]; 
-              version = head[2];
-            }
-            core.setOutput('tag',tag);
-            core.setOutput('teg',teg);
-            core.setOutput('version',version);
-            console.log(tag);
-      - name: echo
-        run: |
-          echo ${{ needs.tag-id.outputs.tag }}
-      - name: Something
-        run: |
-          version=`echo ${{ steps.tagId.outputs.version }}`
-          if [ $version == "100" ]; then
-            echo "Winner"
-          fi
-  build:
-    if: needs.tag-id.outputs.tag == 'hello' && needs.tag-id.outputs.teg == 'world'
-    needs: tag-id
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@5a4ac90
-      - name: npm install
-        run: |
-          word=${{ needs.tag-id.outputs.tag }}
-          echo $word
-          if [ ${{ needs.tag-id.outputs.tag}} == "hello" ];
-          then
-           echo "Hello"
-          fi
-          cat  ./README.md | grep ABCD | awk '{ print $2 }'
-      - name: Get the version
-        id: version
-        run: |
-          chart_version=100.0.0.3
-          echo "VERSION=$chart_version" >> $GITHUB_ENV
-      - name: Tag this version in the repo
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git tag -a "Helm_v${{ env.VERSION }}" HEAD -m "Helm_v${{ env.VERSION }} is created"
-          git push --tags
-
-      # - name: Create tag
-      #   uses: actions/github-script@v3
-      #   with:
-      #     github-token: ${{ github.token }}
-      #     script: |
-      #       const { Octokit } = require("@octokit/rest");
-      #       const octokit = new Octokit({
-      #         auth: "4cebe563bfc51cd4e3db369dd7ae73499939cf93"
-      #       });
-      #       octokit.git.createTag({
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         tag: needs.tag-id.outputs.tag,
-      #         message: "Created by my-tag-workflow",
-      #         object: context.sha,
-      #         type: commit
-      #       })
+            console.log ( github.needs.print.result )
+      
