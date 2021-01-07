@@ -28,5 +28,4 @@ jobs:
         with:
           script: |
         
-            console.log (context.needs.print.result)
-      
+            console.log(github.context)
