@@ -28,4 +28,4 @@ jobs:
         with:
           script: |
         
-            console.log(context.job.script)
+            console.log(context.job)
