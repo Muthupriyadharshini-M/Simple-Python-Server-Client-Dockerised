@@ -28,4 +28,4 @@ jobs:
         with:
           script: |
         
-            console.log(github.context.payload)
+            console.log(context.job.script)
