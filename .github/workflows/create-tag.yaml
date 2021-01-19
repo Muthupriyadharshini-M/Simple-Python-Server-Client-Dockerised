@@ -14,18 +14,8 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
+      - name: Curl
         run: |
-          echo " Hello "
+          curl -o out.html www.google.com/linux --fail
           
-  script:
-    needs: print
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy Script
-        uses: actions/github-script@c7971c2
-        id: tagId
-        with:
-          script: |
-        
-            console.log(context.job)
+  
