@@ -20,6 +20,8 @@ jobs:
       - name: Curl
         run: |
           echo "::set-output name=filepaths::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-          echo $filepaths
+        id: file-path
+      - name: Echo
+        run: echo ${{ steps.file-path.outputs.filepaths }}  
           
   
