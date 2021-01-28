@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
       - name: Curl
         run: |
-          echo "::set-output name=filepaths::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
+          echo "::set-output name=filepaths::$(git diff --no-commit-id --name-only -r ${{ github.sha }})"
         id: file-path
       - name: Echo
         run: echo ${{ steps.file-path.outputs.filepaths }}  
