@@ -11,11 +11,13 @@ on:
     
     
 jobs:
+  
+     
   print:
     runs-on: ubuntu-latest
     steps:
       - name: Curl
         run: |
-          curl -o out.html www.google.com/linux --fail
+          echo "::set-output name=filepaths::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
           
   
