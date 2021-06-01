@@ -1,4 +1,4 @@
-name: "My tag workflow"
+name: Repository dispatch
 
 on: 
   repository_dispatch:
