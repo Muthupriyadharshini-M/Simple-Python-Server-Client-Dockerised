@@ -13,6 +13,6 @@ jobs:
       - name: Echo
         run: | 
           echo "Workflow triggered by repository_dispatch"
-          echo ${{ toJSON(github.event) }}
+          echo ${{ github.event.action }}
           
   
