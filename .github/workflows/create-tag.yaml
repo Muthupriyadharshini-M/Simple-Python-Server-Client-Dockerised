@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Script
-        uses: actions/github-script@c7971c2
+        uses: actions/github-script@c7971c2fc036368a2c59c8d48a0357dad1780f0d
         id: tagId
         with:
           script: |
