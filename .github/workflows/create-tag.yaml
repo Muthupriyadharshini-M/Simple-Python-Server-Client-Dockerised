@@ -10,9 +10,12 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        run: | 
-          echo "Workflow triggered by repository_dispatch"
-          echo ${{ github.event.action }}
+      - name: Deploy Script
+        uses: actions/github-script@c7971c2
+        id: tagId
+        with:
+          script: |
+            console.log(context.job)
+          
           
   
