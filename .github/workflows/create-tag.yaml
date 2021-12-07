@@ -15,7 +15,7 @@ jobs:
         id: tagId
         with:
           script: |
-            console.log(context.job)
+            console.log(github.event)
           
           
   
